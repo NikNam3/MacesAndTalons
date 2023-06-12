@@ -24,7 +24,7 @@ namespace Grid
                 var x = i % 13;
                 var y = Mathf.FloorToInt(i / 13f);
                 var worldPos = new Vector3(x * squareSize - squareSize*12 / 2 + position.x, position.y, y * squareSize - squareSize*12 / 2 + position.z);
-                _grid[i] = new Square(i, !gridMap.GetPixel(x, y).b.Equals(1f), worldPos);
+                _grid[i] = new Square(i, gridMap.GetPixel(x, y).b.Equals(1f), worldPos);
             }
         }
 
