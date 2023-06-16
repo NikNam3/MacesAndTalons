@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -37,6 +38,85 @@ namespace Grid
         public Square GetGrid(Vector2Int gridIndex)
         {
             return _grid[gridIndex.x, gridIndex.y];
+        }
+
+        public List<Square> GetSquaresBetween(Vector2Int point1, Vector2Int point2)
+        {
+            var squares = new List<Square>();
+
+            var x0 = point1.x;
+            var y0 = point1.y;
+            var x1 = point2.x;
+            var y1 = point2.y;
+
+            var steep = Mathf.Abs(y1 - y0) > Mathf.Abs(x1 - x0);
+
+            if (steep)
+            {
+                Swap(ref x0,
+                    ref y0);
+                Swap(ref x1,
+                    ref y1);
+            }
+
+            if (x0 > x1)
+            {
+                Swap(ref x0,
+                    ref x1);
+                Swap(ref y0,
+                    ref y1);
+            }
+
+            var dx = x1 - x0;
+            var dy = Mathf.Abs(y1 - y0);
+            var error = dx / 2;
+            var yStep = y0 < y1
+                ? 1
+                : -1;
+            var y = y0;
+
+            for (var x = x0;
+                 x <= x1;
+                 x++)
+            {
+                if (steep)
+                {
+                    if (IsInBounds(y,
+                            x))
+                        squares.Add(_grid[y,
+                            x]);
+                }
+                else
+                {
+                    if (IsInBounds(x,
+                            y))
+                        squares.Add(_grid[x,
+                            y]);
+                }
+
+                error -= dy;
+                if (error >= 0) continue;
+                y += yStep;
+                error += dx;
+            }
+
+            return squares;
+        }
+
+        private static void Swap<T>(ref T a, ref T b)
+        {
+            (a, b) = (b, a);
+        }
+
+        public bool IsInBounds(int x, int y)
+        {
+            return x >= 0 && x < _grid.GetLength(0) && y >= 0 && y < _grid.GetLength(1);
+        }
+        public bool IsInBounds(Vector2Int gridIndex)
+        {
+            var x = gridIndex.x;
+            var y = gridIndex.y;
+            return x >= 0 && x < _grid.GetLength(0) && y >= 0 && y < _grid.GetLength(1);
         }
         private void OnDrawGizmos()
         {

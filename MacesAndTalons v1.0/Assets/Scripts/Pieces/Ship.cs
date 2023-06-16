@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pieces
 {
-    internal abstract class Ship : Piece
+    public abstract class Ship : Piece
     {
         private char _orientation; // {N, E, S, W} North East South West
         private Transform[] _slots;
