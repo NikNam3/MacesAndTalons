@@ -35,7 +35,7 @@ namespace Game
         private void Spawn(GameObject obj, Vector2Int gridIndex, Vector3 rotation)
         {
             // Instantiate Object
-            var script = Instantiate(obj, grid.GetGrid()[gridIndex.x, gridIndex.y].GetWorldPos(), Quaternion.Euler(rotation)).GetComponent<Piece>();
+            var script = Instantiate(obj, grid.GetGrid(gridIndex).GetWorldPos(), Quaternion.Euler(rotation)).GetComponent<Piece>();
             // Initialise Object
             script.Init(grid, gridIndex);
         }

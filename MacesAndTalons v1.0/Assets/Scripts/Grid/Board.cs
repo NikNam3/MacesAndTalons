@@ -16,10 +16,8 @@ namespace Grid
         public void MakeGrid()
         {
             _grid = new Square[13,13];
-            
-            for (var x = 0; x < _grid.Length / 13 - 1; x++)
-            {
-                for (var y = 0; y < _grid.Length / - 1; x++)
+            for (var x = 0; x < _grid.Length / 13; x++) {
+                for (var y = 0; y < _grid.Length / 13; y++)
                 {
                     var position = transform.position;
                     var worldPos = new Vector3(x * squareSize - squareSize*12 / 2 + position.x, position.y, y * squareSize - squareSize*12 / 2 + position.z);
@@ -34,6 +32,11 @@ namespace Grid
         public Square[,] GetGrid()
         {
             return _grid;
+        }
+
+        public Square GetGrid(Vector2Int gridIndex)
+        {
+            return _grid[gridIndex.x, gridIndex.y];
         }
         private void OnDrawGizmos()
         {
