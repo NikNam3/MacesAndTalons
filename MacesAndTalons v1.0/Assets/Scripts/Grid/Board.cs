@@ -1,4 +1,3 @@
-using Scenes.Scripts.Grid;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,24 +10,28 @@ namespace Grid
         [SerializeField]
         private float squareSize;
         
-        private Square[] _grid;
+        private Square[,] _grid;
 
         
         public void MakeGrid()
         {
-            _grid = new Square[13 * 13];
-        
-            for (var i = 0; i < _grid.Length; i++)
+            _grid = new Square[13,13];
+            
+            for (var x = 0; x < _grid.Length / 13 - 1; x++)
             {
-                var position = transform.position;
-                var x = i % 13;
-                var y = Mathf.FloorToInt(i / 13f);
-                var worldPos = new Vector3(x * squareSize - squareSize*12 / 2 + position.x, position.y, y * squareSize - squareSize*12 / 2 + position.z);
-                _grid[i] = new Square(i, gridMap.GetPixel(x, y).b.Equals(1f), worldPos);
+                for (var y = 0; y < _grid.Length / - 1; x++)
+                {
+                    var position = transform.position;
+                    var worldPos = new Vector3(x * squareSize - squareSize*12 / 2 + position.x, position.y, y * squareSize - squareSize*12 / 2 + position.z);
+                    _grid[x, y] = new Square(
+                        new Vector2Int(x, y), 
+                        gridMap.GetPixel(x, y).b.Equals(1f),
+                        worldPos);
+                }
             }
         }
 
-        public Square[] GetGrid()
+        public Square[,] GetGrid()
         {
             return _grid;
         }

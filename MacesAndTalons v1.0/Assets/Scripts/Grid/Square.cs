@@ -1,20 +1,20 @@
 using System;
 using UnityEngine;
 
-namespace Scenes.Scripts.Grid
+namespace Grid
 {
     public class Square : IEquatable<Square>
     {
-        private int _index;
+        private Vector2Int _gridPos;
         private bool _isWater;
         private bool _isOccupied;
         private bool _hasMace;
 
         private Vector3 _worldPos;
 
-        public Square(int index, bool isWater, Vector3 worldPos)
+        public Square(Vector2Int gridPos, bool isWater, Vector3 worldPos)
         {
-            _index = index;
+            _gridPos = gridPos;
             _isWater = isWater;
             _isOccupied = false;
             _hasMace = false;

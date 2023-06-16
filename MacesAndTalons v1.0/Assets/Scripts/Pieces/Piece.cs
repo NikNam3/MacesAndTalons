@@ -8,14 +8,14 @@ namespace Pieces
       [SerializeField] 
       protected bool isViking;
       protected Board Grid;
-      protected int GridIndex;
+      protected Vector2Int GridIndex;
 
-      public void Init(Board grid, int gridIndex)
+      public void Init(Board grid, Vector2Int gridIndex)
       {
          Grid = grid;
          GridIndex = gridIndex;
       }
-      public abstract bool MoveTo(int gridIndex);
+      public abstract bool MoveTo(Vector2Int gridIndex);
 
    }
 }
