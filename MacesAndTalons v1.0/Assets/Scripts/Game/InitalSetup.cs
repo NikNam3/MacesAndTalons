@@ -1,5 +1,6 @@
 using Grid;
 using Pieces;
+using Pieces.ChildClasses;
 using UnityEngine;
 
 namespace Game
@@ -28,16 +29,19 @@ namespace Game
             grid.MakeGrid();
         
             // Spawn Pieces
-            Spawn(marauderChief, new Vector2Int(7, 7), new Vector3(0f, 0f, 0f));
+            Spawn(vikingHunter, new Vector2Int(12, 12), new Vector3(0f, 0f, 0f));
         }
 
         // Update is called once per frame
-        private void Spawn(GameObject obj, Vector2Int gridIndex, Vector3 rotation)
+        private GameObject Spawn(GameObject obj, Vector2Int gridIndex, Vector3 rotation)
         {
             // Instantiate Object
-            var script = Instantiate(obj, grid.GetGrid(gridIndex).GetWorldPos(), Quaternion.Euler(rotation)).GetComponent<Piece>();
+            var piece = Instantiate(obj, grid.GetGrid(gridIndex).GetWorldPos(), Quaternion.Euler(rotation));
+            // Get Init Script
+            var script = piece.GetComponent<Piece>();
             // Initialise Object
             script.Init(grid, gridIndex);
+            return piece;
         }
     }
 }
