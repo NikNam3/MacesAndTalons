@@ -1,18 +1,24 @@
 using System;
+using Pieces;
 using UnityEngine;
 
 namespace Grid
 {
-    public class Square : IEquatable<Square>
+    public class Square : IEquatable<Vector2Int>
     {
-        private Vector2Int _gridPos;
-        private bool _isWater;
+        
         private bool _isOccupied; // Only True if A Soldier is on The field (For water a Soldier must be on a ship)
+        private Piece _piece;
+        
         private bool _hasMace;
         private bool _hasVikingShip;
         private bool _hasMarauderShip;
+        
+        
 
-        private Vector3 _worldPos;
+        private readonly Vector3 _worldPos;
+        private readonly Vector2Int _gridPos;
+        private readonly bool _isWater;
 
         public Square(Vector2Int gridPos, bool isWater, Vector3 worldPos)
         {
@@ -20,13 +26,14 @@ namespace Grid
             _isWater = isWater;
             _isOccupied = false;
             _hasMace = false;
+            _piece = null;
             _worldPos = worldPos;
 
         }
 
-        public bool Equals(Square other)
+        public bool Equals(Vector2Int other)
         {
-            return false;
+            return _gridPos == other;
         }
 
         public Vector3 GetWorldPos()
@@ -43,10 +50,50 @@ namespace Grid
         {
             return _isOccupied;
         }
+        public void Occupy(Piece piece)
+        {
+            _piece = piece;
+            _isOccupied = true;
+        }
+        public void UnOccupy()
+        {
+            _piece = null;
+            _isOccupied = false;
+        }
 
-        public bool IsShip(bool isViking)
+        public void SetShipType(bool isViking)
+        {
+            if (isViking)
+            {
+                _hasVikingShip = true;
+            }
+            else
+            {
+                _hasMarauderShip = true;
+            }
+        }
+        public void ResetShipType()
+        {
+            _hasVikingShip = false;
+            _hasMarauderShip = false;
+        }
+
+        public bool HasShipType(bool isViking)
         {
             return _hasVikingShip && isViking || _hasMarauderShip && !isViking;
+        }
+        public bool HasMace()
+        {
+            return _hasMace;
+        }
+
+        public Vector2Int GetGridPos()
+        {
+            return _gridPos;
+        }
+        public Piece GetPiece()
+        {
+            return _piece;
         }
     }
 }

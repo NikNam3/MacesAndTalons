@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &111043339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111043340}
+  - component: {fileID: 111043341}
+  m_Layer: 0
+  m_Name: Game.Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111043340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111043339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1965911303}
+  m_Father: {fileID: 430146866}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &111043341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111043339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8754029e401ff294f92fd27e98ab669f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 700233882}
 --- !u!1 &131431239
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1965911303}
+  - {fileID: 111043340}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -306,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700233880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -325,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba5e22ede8f1a8c4aa14c02f9480bf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridMap: {fileID: 2800000, guid: d12abd145529a2744984238bc6d52d42, type: 3}
-  squareSize: 2
+  gridMap: {fileID: 2800000, guid: 009308b819019684fa95d4b5c37a76c9, type: 3}
+  squareSize: 2.25
 --- !u!1 &722956623
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +426,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 556c6442d2679f848973fc9dc9994e1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -555,11 +601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71aea90b8d7fecb449eb4a45516bdf4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseSensitivity: 1
-  ScrollSensitivity: 2
-  OrbitSpeed: 10
-  ScrollSpeed: 6
-  CameraDisabled: 0
+  mouseSensitivity: 1
+  scrollSensitivity: 2
+  orbitSpeed: 10
+  scrollSpeed: 6
+  cameraDisabled: 0
 --- !u!1 &1965911302
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +617,7 @@ GameObject:
   - component: {fileID: 1965911303}
   - component: {fileID: 1965911304}
   m_Layer: 0
-  m_Name: Game.InitialSetup
+  m_Name: Game.Controller.InitialSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -584,12 +630,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965911302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 430146866}
+  m_Father: {fileID: 111043340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1965911304
@@ -606,12 +652,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vikingHunter: {fileID: 267259315046969585, guid: d0234d0c61df28549a0faeb22dc87c54, type: 3}
   vikingChief: {fileID: 0}
-  vikingLongShip: {fileID: 0}
-  vikingKingShip: {fileID: 0}
+  vikingLongShip: {fileID: 2561677246698389246, guid: d70d21bc7c6c43244b7150f773eb1795, type: 3}
+  vikingKingShip: {fileID: 6430177497845118409, guid: a558a5a0c7d3a3c48a3fa8afeb972ac2, type: 3}
   marauderHunter: {fileID: 0}
   marauderChief: {fileID: 267259315046969585, guid: 5b48ca18c848da84985d95bdadb26e8d, type: 3}
-  marauderLongShip: {fileID: 0}
-  marauderKingShip: {fileID: 0}
+  marauderLongShip: {fileID: 2561677246698389246, guid: 4f02ed768fa34fb41900377c1dbb3286, type: 3}
+  marauderKingShip: {fileID: 6430177497845118409, guid: f6bca6a07af4fc5459dd5e3c1e573cab, type: 3}
   traitor: {fileID: 0}
   accomplice: {fileID: 0}
   dragon: {fileID: 0}

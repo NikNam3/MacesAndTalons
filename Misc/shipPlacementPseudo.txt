@@ -1,0 +1,61 @@
+if (!Input.GetMouseButtonDown(0)) return;
+
+var gridPos = grid.GetGrid(grid.GetGridIndexFromMousePos()).GetGridPos();
+
+if (grid.GetGrid(gridPos).IsWater() && !grid.GetGrid(gridPos).IsOccupied() && gridPos.y < 7)
+	TryToPlaceLongShip
+	TryToPlaceShortShip
+
+if (_ship1Placed && _ship2Placed && grid.GetGrid(gridPos).IsWater() && !grid.GetGrid(gridPos).IsOccupied() && gridPos.y > 7)
+	TryToPlaceLongShip
+	TryToPlaceShortShip
+
+if (_ship1Placed && _ship2Placed && _ship3Placed && _ship4Placed)
+            {
+                Debug.Log("All ships placed");
+            }
+
+
+
+private void TryToPlaceShip(ref bool shipPlaced, Vector2Int gridPos, int delta)
+        {
+            if (!grid.IsInBounds(_pos1))
+            {
+                _pos1 = gridPos;
+                Debug.Log(2);
+                return;
+            }
+            if (!grid.IsInBounds(_pos2))
+            {
+                Debug.Log(3);
+                _pos2 = gridPos;
+            }
+            if ((_pos1.x == _pos2.x || _pos1.y == _pos2.y) &&
+                (Mathf.Abs(_pos1.x - _pos2.x) == delta || Mathf.Abs(_pos1.y - _pos2.y) == delta) &&
+                grid.GetSquaresBetween(_pos1, _pos2).All(x => !x.IsOccupied()))
+            {
+                _positions.Add((_pos1, _pos2));
+                grid.GetSquaresBetween(_pos1, _pos2).ForEach(x => x.SetOccupation(true));
+                shipPlaced = true;
+                Debug.Log(4);
+            } 
+        }
+	
+
+
+
+
+
+
+
+
+
+
+
+
+make pos1
+
+then make pos2
+
+if pos2 is valid spawn ship and reset pos for next ship
+else reset pos for new attemnt
